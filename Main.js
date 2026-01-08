@@ -547,7 +547,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function validateOpenQuestions() {
-		clearInvalid();
 		let firstInvalid = null;
 		openQuestionIds.forEach(id => {
 			const field = document.getElementById(id);
@@ -593,6 +592,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		// Consent validation removed
 		if (firstInvalid) {
+			const panel = firstInvalid.closest('.step-panel');
+			const stepKey = panel?.dataset?.step
+				|| (panel?.id === 'questionsSection' ? 'questions' : null)
+				|| (panel?.id === 'basicSection' ? 'basic' : null);
+			if (stepKey) navigateTo(stepKey);
 			firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
 			return false;
 		}
