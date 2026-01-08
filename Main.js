@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			categoryJusticeOnly: 'العدالة',
 			categoryPride: 'الشعور بالفخر Pride',
 			categoryTeamSpirit: 'الزمالة وروح الفريق',
+			categoryDone: 'تم',
 			progressJusticeLabel: 'العدالة والشعور بالفخر',
 			progressTeamLabel: 'الزمالة وروح الفريق',
+			progressDoneLabel: 'تم',
 			ratingNote: 'استخدم مقياسًا من (1 إلى 5): <span class="note-num n1">1</span> لا أوافق على الإطلاق، <span class="note-num n2">2</span> لا أوافق، <span class="note-num n3">3</span> محايد، <span class="note-num n4">4</span> أوافق، <span class="note-num n5">5</span> أوافق بشدة',
 			qTexts: {
 				cred1: 'الإدارة العليا تشرح أسباب القرارات المهمة بوضوح',
@@ -81,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			commentsPrompt: 'ماهي الأفكار أو الاقتراحات التي ترغب في مشاركتها لتحسين تجربتك معنا؟',
 			commentsPlaceholder: 'اكتب الملاحظات هنا',
 			submit: 'إرسال',
+			restart: 'إعادة البدء',
 			modalTitle: 'شكراً لك!',
 			modalText: 'تم استلام إجاباتك بنجاح.',
 			close: 'إغلاق',
@@ -112,8 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			categoryJusticeOnly: 'Fairness',
 			categoryPride: 'Pride',
 			categoryTeamSpirit: 'Team Spirit',
+			categoryDone: 'Done',
 			progressJusticeLabel: 'Fairness & Pride',
 			progressTeamLabel: 'Team Spirit',
+			progressDoneLabel: 'Done',
 			ratingNote: 'Use a scale (1 to 5): <span class="note-num n1">1</span> Strongly disagree, <span class="note-num n2">2</span> Disagree, <span class="note-num n3">3</span> Neutral, <span class="note-num n4">4</span> Agree, <span class="note-num n5">5</span> Strongly agree',
 			qTexts: {
 				cred1: 'الإدارة العليا تشرح أسباب القرارات المهمة بوضوح',
@@ -160,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			commentsPrompt: 'Do you have any additional notes to improve the user experience?',
 			commentsPlaceholder: 'Write your notes here',
 			submit: 'Submit',
+			restart: 'Start over',
 			modalTitle: 'Thank you!',
 			modalText: 'Your responses have been received successfully.',
 			close: 'Close',
@@ -240,12 +246,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		const progQuestions = document.getElementById('progress-questions-label'); if (progQuestions) progQuestions.textContent = dict.ratingTitle;
 		const progJustice = document.getElementById('progress-justice-label'); if (progJustice) progJustice.textContent = dict.progressJusticeLabel;
 		const progTeam = document.getElementById('progress-team-label'); if (progTeam) progTeam.textContent = dict.progressTeamLabel;
+		const progDone = document.getElementById('progress-done-label'); if (progDone) progDone.textContent = dict.progressDoneLabel;
 		const catCred = document.getElementById('cat-cred'); if (catCred) catCred.textContent = dict.categoryCredibility;
 		const catRespect = document.getElementById('cat-respect'); if (catRespect) catRespect.textContent = dict.categoryRespect;
 		const justiceTitle = document.getElementById('justice-title'); if (justiceTitle) justiceTitle.textContent = dict.categoryJustice;
 		const justiceCat = document.getElementById('cat-justice'); if (justiceCat) justiceCat.textContent = dict.categoryJusticeOnly;
 		const prideCat = document.getElementById('cat-pride'); if (prideCat) prideCat.textContent = dict.categoryPride;
 		const teamTitle = document.getElementById('team-title'); if (teamTitle) teamTitle.textContent = dict.categoryTeamSpirit;
+		const doneTitle = document.getElementById('done-title'); if (doneTitle) doneTitle.textContent = dict.categoryDone;
 		document.querySelectorAll('.rating-note').forEach(note => { note.innerHTML = dict.ratingNote; });
 		// Questions by input name
 		function setQuestion(name, text) {
@@ -306,10 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		const backBtn = document.getElementById('backBtn'); if (backBtn) backBtn.textContent = dict.back;
 		const backToQuestionsBtn = document.getElementById('backToQuestionsBtn'); if (backToQuestionsBtn) backToQuestionsBtn.textContent = dict.back;
 		const backToJusticeBtn = document.getElementById('backToJusticeBtn'); if (backToJusticeBtn) backToJusticeBtn.textContent = dict.back;
-		const closeBtn = document.getElementById('modalCloseBtn'); if (closeBtn) closeBtn.textContent = dict.close;
+		const restartBtn = document.getElementById('restartBtn'); if (restartBtn) restartBtn.textContent = dict.restart;
 		// Modal
-		const mTitle = document.querySelector('.modal-title'); if (mTitle) mTitle.textContent = dict.modalTitle;
-		const mText = document.querySelector('.modal-text'); if (mText) mText.textContent = dict.modalText;
 		// Footer
 		const footer = document.querySelector('footer .container'); if (footer) footer.textContent = dict.footer;
 		// Lang button aria
@@ -392,8 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (!btn) return;
 
-	const successModal = document.getElementById('successModal');
-	const modalCloseBtn = document.getElementById('modalCloseBtn');
+	const restartBtn = document.getElementById('restartBtn');
 
 	const fields = {
 		sector: document.getElementById('sector'),
@@ -594,20 +599,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		return true;
 	}
 
-	function showModal() {
-		if (!successModal) return;
-		successModal.classList.add('show');
-		successModal.setAttribute('aria-hidden', 'false');
-	}
-	function hideModalAndReset() {
-		if (!successModal) return;
+	function resetSurvey() {
 		// Animate closing then refresh
-		successModal.classList.add('closing');
-		// Keep show so display:flex remains during animation
 		setTimeout(() => {
-			successModal.classList.remove('closing');
-			successModal.classList.remove('show');
-			successModal.setAttribute('aria-hidden', 'true');
 			// Scroll to top before reloading so next load starts at the beginning
 			window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 			// Reload to reset the page to fresh state
@@ -646,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	btn.addEventListener('click', (e) => {
 		e.preventDefault();
 		if (!validate()) return;
-		showModal();
+		navigateTo('done');
 	});
 
 	// Next button handler: validate basic info then reveal questions
@@ -764,10 +758,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	// Modal close interactions
-	if (modalCloseBtn) modalCloseBtn.addEventListener('click', hideModalAndReset);
-	if (successModal) successModal.addEventListener('click', (ev) => {
-		if (ev.target === successModal) hideModalAndReset();
-	});
+	// Done step restart interactions
+	if (restartBtn) restartBtn.addEventListener('click', resetSurvey);
 });
 

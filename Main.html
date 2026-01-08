@@ -341,6 +341,11 @@
 									<span class="dot">4</span>
 									<span id="progress-team-label" class="label"> الزمالة وروح الفريق</span>
 								</li>
+								<li class="connector" aria-hidden="true"></li>
+								<li class="step" data-step="done">
+									<span class="dot">5</span>
+									<span id="progress-done-label" class="label"> تم</span>
+								</li>
 							</ol>
 						</nav>
 						<div id="basicSection" class="step-panel active">
@@ -1786,6 +1791,21 @@
 						</div>
 					</div>
 
+					<div id="doneSection" class="step-panel" data-step="done">
+						<h3 id="done-title" class="category-title">تم</h3>
+						<div class="rating-row" role="group" aria-labelledby="done-message" style="margin-top: 16px;">
+							<div id="done-message" class="rating-question">
+								<div class="rating-question-inner single-col">
+									<img class="modal-check-img" src="./img/Done.png" alt="تم الإرسال بنجاح" />
+									<div class="rating-question-text">شكراً لك! تم استلام إجاباتك بنجاح.</div>
+								</div>
+							</div>
+						</div>
+						<div class="actions" style="margin-top: 24px;">
+							<button id="restartBtn" type="button" class="btn btn-primary" aria-label="إعادة البدء">إعادة البدء</button>
+						</div>
+					</div>
+
 					</div>
 				</div>
 			</div>
@@ -1798,18 +1818,6 @@
 		<footer class="footer" aria-label="حقوق النشر">
 			<div class="container">جميع الحقوق محفوظة - الهيئة العامة للمساحة والمعلومات الجيومكانية 2025</div>
 		</footer>
-		<!-- Success Modal -->
-		<div id="successModal" class="modal-backdrop" role="dialog" aria-labelledby="successTitle" aria-modal="true" aria-hidden="true">
-			<div class="modal-card">
-				<img class="modal-check-img" src="./img/Done.png" alt="تم الإرسال بنجاح" />
-				<div id="successTitle" class="modal-title">شكراً لك!</div>
-				<div class="modal-text">تم استلام إجاباتك بنجاح.</div>
-				<div class="actions" style="margin-top: 70px;">
-					<button id="modalCloseBtn" type="button" class="btn btn-primary">إغلاق</button>
-				</div>
-			</div>
-		</div>
-
 		<script src="Main.js"></script>
 	</body>
  </html>
