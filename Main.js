@@ -30,7 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			categoryCredibility: 'المصداقية',
 			categoryRespect: 'الاحترام',
 			categoryJustice: 'العدالة والشعور بالفخر',
+			categoryJusticeOnly: 'العدالة',
+			categoryPride: 'الشعور بالفخر Pride',
+			categoryTeamSpirit: 'الزمالة وروح الفريق',
 			progressJusticeLabel: 'العدالة والشعور بالفخر',
+			progressTeamLabel: 'الزمالة وروح الفريق',
 			ratingNote: 'استخدم مقياسًا من (1 إلى 5): <span class="note-num n1">1</span> لا أوافق على الإطلاق، <span class="note-num n2">2</span> لا أوافق، <span class="note-num n3">3</span> محايد، <span class="note-num n4">4</span> أوافق، <span class="note-num n5">5</span> أوافق بشدة',
 			qTexts: {
 				cred1: 'الإدارة العليا تشرح أسباب القرارات المهمة بوضوح',
@@ -49,6 +53,30 @@ document.addEventListener('DOMContentLoaded', () => {
 				respect6: 'تؤخذ ملاحظات الموظفين  تجاه  تحسين بيئة العمل بجدية',
 				respect7: 'تؤخذ ملاحظات الموظفين  تجاه  تحسين بيئة العمل بجدية',
 				respect8: 'تتم إدارة  أعباء  العمل بشكل معقول وعادل بين الفريق',
+				justice18: 'تتم الترقيات بناءً على معايير واضحة ومعلنة',
+				justice19: 'يتم تقييم الأداء بموضوعية واتساق',
+				justice20: 'أشعر بتكافؤ الفرص في التدريب والتكليفات النوعية',
+				justice21: 'تُدار المكافآت والحوافز إن وجدت بمعايير عادلة',
+				justice22: 'تُعالج الشكاوى/التظلمات بسرية وعدالة',
+				justice23: 'لا تؤثر العلاقات الشخصية على القرارات الإدارية',
+				justice24: 'يتم التعامل مع الجميع بنفس المعايير دون تمييز',
+				justice24b: 'القرارات المتعلقة بالموارد عادلة (فرص، مهام، مزايا)',
+				pride25: 'أشعر بالفخر لكوني جزءاً من هذه الجهة',
+				pride26: 'أرى أن عملي يساهم في تحقيق أثر واضح للمستفيدين/للوطن',
+				pride27: 'أعرف كيف يساهم عملي اليومي في أهداف الجهة',
+				pride28: 'يتم الاحتفاء بالإنجازات المؤسسية والفردية بشكل مناسب',
+				pride29: 'سمعة الجهة تجعلني أوصي الآخرين بالعمل بها',
+				pride30: 'أشعر بأن جودة الخدمات/المنتجات التي نقدمها عالية',
+				pride31: 'أشعر بالانتماء لقيم الجهة وليس فقط للمهام الوظيفية',
+				pride32: 'في الجهة قصص نجاح ملهمة يتم إبرازها داخلياً',
+				team33: 'تسود علاقات عمل إيجابية داخل فريقي',
+				team34: 'يتم التعاون بين الإدارات بشكل عملي وليس شكلياً',
+				team35: 'يتم حل الخلافات بشكل محترم وبنّاء',
+				team36: 'أشعر بالأمان لطرح رأيي دون تبعات سلبية',
+				team37: 'يُشجَّع العمل بروح الفريق أكثر من العمل الفردي',
+				team38: 'يتم تقدير مساهمات الجميع داخل الفريق',
+				team39: 'أشعر أن بيئة العمل داعمة ومحفزة',
+				team40: 'يوجد شعور عام بالثقة المتبادلة بين الزملاء'
 			},
 			commentsPrompt: 'ماهي الأفكار أو الاقتراحات التي ترغب في مشاركتها لتحسين تجربتك معنا؟',
 			commentsPlaceholder: 'اكتب الملاحظات هنا',
@@ -81,7 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			categoryCredibility: 'Credibility',
 			categoryRespect: 'Respect',
 			categoryJustice: 'Fairness & Pride',
+			categoryJusticeOnly: 'Fairness',
+			categoryPride: 'Pride',
+			categoryTeamSpirit: 'Team Spirit',
 			progressJusticeLabel: 'Fairness & Pride',
+			progressTeamLabel: 'Team Spirit',
 			ratingNote: 'Use a scale (1 to 5): <span class="note-num n1">1</span> Strongly disagree, <span class="note-num n2">2</span> Disagree, <span class="note-num n3">3</span> Neutral, <span class="note-num n4">4</span> Agree, <span class="note-num n5">5</span> Strongly agree',
 			qTexts: {
 				cred1: 'الإدارة العليا تشرح أسباب القرارات المهمة بوضوح',
@@ -99,7 +131,31 @@ document.addEventListener('DOMContentLoaded', () => {
 				respect5: 'يتم التعامل باحترام مع توازن العمل والحياة قدر الإمكان',
 				respect6: 'تؤخذ ملاحظات الموظفين  تجاه  تحسين بيئة العمل بجدية',
 				respect7: 'تؤخذ ملاحظات الموظفين  تجاه  تحسين بيئة العمل بجدية',
-				respect8: 'تتم إدارة  أعباء  العمل بشكل معقول وعادل بين الفريق'
+				respect8: 'تتم إدارة  أعباء  العمل بشكل معقول وعادل بين الفريق',
+				justice18: 'تتم الترقيات بناءً على معايير واضحة ومعلنة',
+				justice19: 'يتم تقييم الأداء بموضوعية واتساق',
+				justice20: 'أشعر بتكافؤ الفرص في التدريب والتكليفات النوعية',
+				justice21: 'تُدار المكافآت والحوافز إن وجدت بمعايير عادلة',
+				justice22: 'تُعالج الشكاوى/التظلمات بسرية وعدالة',
+				justice23: 'لا تؤثر العلاقات الشخصية على القرارات الإدارية',
+				justice24: 'يتم التعامل مع الجميع بنفس المعايير دون تمييز',
+				justice24b: 'القرارات المتعلقة بالموارد عادلة (فرص، مهام، مزايا)',
+				pride25: 'أشعر بالفخر لكوني جزءاً من هذه الجهة',
+				pride26: 'أرى أن عملي يساهم في تحقيق أثر واضح للمستفيدين/للوطن',
+				pride27: 'أعرف كيف يساهم عملي اليومي في أهداف الجهة',
+				pride28: 'يتم الاحتفاء بالإنجازات المؤسسية والفردية بشكل مناسب',
+				pride29: 'سمعة الجهة تجعلني أوصي الآخرين بالعمل بها',
+				pride30: 'أشعر بأن جودة الخدمات/المنتجات التي نقدمها عالية',
+				pride31: 'أشعر بالانتماء لقيم الجهة وليس فقط للمهام الوظيفية',
+				pride32: 'في الجهة قصص نجاح ملهمة يتم إبرازها داخلياً',
+				team33: 'تسود علاقات عمل إيجابية داخل فريقي',
+				team34: 'يتم التعاون بين الإدارات بشكل عملي وليس شكلياً',
+				team35: 'يتم حل الخلافات بشكل محترم وبنّاء',
+				team36: 'أشعر بالأمان لطرح رأيي دون تبعات سلبية',
+				team37: 'يُشجَّع العمل بروح الفريق أكثر من العمل الفردي',
+				team38: 'يتم تقدير مساهمات الجميع داخل الفريق',
+				team39: 'أشعر أن بيئة العمل داعمة ومحفزة',
+				team40: 'يوجد شعور عام بالثقة المتبادلة بين الزملاء'
 			},
 			commentsPrompt: 'Do you have any additional notes to improve the user experience?',
 			commentsPlaceholder: 'Write your notes here',
@@ -183,10 +239,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		const ratingTitle = document.querySelector('.rating-title'); if (ratingTitle) ratingTitle.textContent = dict.ratingTitle;
 		const progQuestions = document.getElementById('progress-questions-label'); if (progQuestions) progQuestions.textContent = dict.ratingTitle;
 		const progJustice = document.getElementById('progress-justice-label'); if (progJustice) progJustice.textContent = dict.progressJusticeLabel;
+		const progTeam = document.getElementById('progress-team-label'); if (progTeam) progTeam.textContent = dict.progressTeamLabel;
 		const catCred = document.getElementById('cat-cred'); if (catCred) catCred.textContent = dict.categoryCredibility;
 		const catRespect = document.getElementById('cat-respect'); if (catRespect) catRespect.textContent = dict.categoryRespect;
 		const justiceTitle = document.getElementById('justice-title'); if (justiceTitle) justiceTitle.textContent = dict.categoryJustice;
-		const ratingNote = document.querySelector('.rating-note'); if (ratingNote) ratingNote.innerHTML = dict.ratingNote;
+		const justiceCat = document.getElementById('cat-justice'); if (justiceCat) justiceCat.textContent = dict.categoryJusticeOnly;
+		const prideCat = document.getElementById('cat-pride'); if (prideCat) prideCat.textContent = dict.categoryPride;
+		const teamTitle = document.getElementById('team-title'); if (teamTitle) teamTitle.textContent = dict.categoryTeamSpirit;
+		document.querySelectorAll('.rating-note').forEach(note => { note.innerHTML = dict.ratingNote; });
 		// Questions by input name
 		function setQuestion(name, text) {
 			const anyInput = document.querySelector(`input[name="${name}"]`);
@@ -210,6 +270,30 @@ document.addEventListener('DOMContentLoaded', () => {
 		setQuestion('rating.respect6', dict.qTexts.respect6);
 		setQuestion('rating.respect7', dict.qTexts.respect7);
 		setQuestion('rating.respect8', dict.qTexts.respect8);
+		setQuestion('rating.justice18', dict.qTexts.justice18);
+		setQuestion('rating.justice19', dict.qTexts.justice19);
+		setQuestion('rating.justice20', dict.qTexts.justice20);
+		setQuestion('rating.justice21', dict.qTexts.justice21);
+		setQuestion('rating.justice22', dict.qTexts.justice22);
+		setQuestion('rating.justice23', dict.qTexts.justice23);
+		setQuestion('rating.justice24', dict.qTexts.justice24);
+		setQuestion('rating.justice24b', dict.qTexts.justice24b);
+		setQuestion('rating.pride25', dict.qTexts.pride25);
+		setQuestion('rating.pride26', dict.qTexts.pride26);
+		setQuestion('rating.pride27', dict.qTexts.pride27);
+		setQuestion('rating.pride28', dict.qTexts.pride28);
+		setQuestion('rating.pride29', dict.qTexts.pride29);
+		setQuestion('rating.pride30', dict.qTexts.pride30);
+		setQuestion('rating.pride31', dict.qTexts.pride31);
+		setQuestion('rating.pride32', dict.qTexts.pride32);
+		setQuestion('rating.team33', dict.qTexts.team33);
+		setQuestion('rating.team34', dict.qTexts.team34);
+		setQuestion('rating.team35', dict.qTexts.team35);
+		setQuestion('rating.team36', dict.qTexts.team36);
+		setQuestion('rating.team37', dict.qTexts.team37);
+		setQuestion('rating.team38', dict.qTexts.team38);
+		setQuestion('rating.team39', dict.qTexts.team39);
+		setQuestion('rating.team40', dict.qTexts.team40);
 		// Comments
 		const commentsPrompt = document.querySelector('#q-comments .rating-question-text'); if (commentsPrompt) commentsPrompt.textContent = dict.commentsPrompt;
 		const commentsInput = document.getElementById('comments'); if (commentsInput) commentsInput.placeholder = dict.commentsPlaceholder;
@@ -218,8 +302,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		const submitBtn = document.getElementById('submitBtn'); if (submitBtn) submitBtn.textContent = dict.submit;
 		const nextBtn = document.getElementById('nextBtn'); if (nextBtn) nextBtn.textContent = dict.next;
 		const nextToJusticeBtn = document.getElementById('nextToJusticeBtn'); if (nextToJusticeBtn) nextToJusticeBtn.textContent = dict.next;
+		const nextToTeamBtn = document.getElementById('nextToTeamBtn'); if (nextToTeamBtn) nextToTeamBtn.textContent = dict.next;
 		const backBtn = document.getElementById('backBtn'); if (backBtn) backBtn.textContent = dict.back;
 		const backToQuestionsBtn = document.getElementById('backToQuestionsBtn'); if (backToQuestionsBtn) backToQuestionsBtn.textContent = dict.back;
+		const backToJusticeBtn = document.getElementById('backToJusticeBtn'); if (backToJusticeBtn) backToJusticeBtn.textContent = dict.back;
 		const closeBtn = document.getElementById('modalCloseBtn'); if (closeBtn) closeBtn.textContent = dict.close;
 		// Modal
 		const mTitle = document.querySelector('.modal-title'); if (mTitle) mTitle.textContent = dict.modalTitle;
@@ -333,7 +419,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		'rating.respect6',
 		'rating.respect7',
 		'rating.respect8',
+		'rating.justice18',
+		'rating.justice19',
+		'rating.justice20',
+		'rating.justice21',
+		'rating.justice22',
+		'rating.justice23',
+		'rating.justice24',
+		'rating.justice24b',
+		'rating.pride25',
+		'rating.pride26',
+		'rating.pride27',
+		'rating.pride28',
+		'rating.pride29',
+		'rating.pride30',
+		'rating.pride31',
+		'rating.pride32',
+		'rating.team33',
+		'rating.team34',
+		'rating.team35',
+		'rating.team36',
+		'rating.team37',
+		'rating.team38',
+		'rating.team39',
+		'rating.team40'
 	];
+	const openQuestionIds = ['justiceOpen1', 'justiceOpen2', 'justiceOpen3'];
 
 		// Enhance native selects with custom dropdowns (for styled open list)
 		function enhanceSelect(selectEl) {
@@ -454,6 +565,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 		});
+		// Required open-ended questions
+		openQuestionIds.forEach(id => {
+			const field = document.getElementById(id);
+			if (field && !field.value.trim()) {
+				field.classList.add('invalid');
+				if (!firstInvalid) firstInvalid = field.closest('.rating-question') || field;
+			}
+		});
 		// Consent validation removed
 		if (firstInvalid) {
 			firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -501,6 +620,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		});
 	});
+	openQuestionIds.forEach(id => {
+		const field = document.getElementById(id);
+		if (field) {
+			field.addEventListener('input', () => {
+				field.classList.remove('invalid');
+			});
+		}
+	});
 
 	// Submit handler
 	btn.addEventListener('click', (e) => {
@@ -514,6 +641,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const questionsSection = document.getElementById('questionsSection');
 	const nextToJusticeBtnEl = document.getElementById('nextToJusticeBtn');
 	const backToQuestionsBtnEl = document.getElementById('backToQuestionsBtn');
+	const nextToTeamBtnEl = document.getElementById('nextToTeamBtn');
+	const backToJusticeBtnEl = document.getElementById('backToJusticeBtn');
 	const basicNextActions = document.getElementById('basic-next-actions');
 	const basicSection = document.getElementById('basicSection');
 	const backBtnEl = document.getElementById('backBtn');
@@ -604,6 +733,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		backToQuestionsBtnEl.addEventListener('click', (e) => {
 			e.preventDefault();
 			navigateTo('questions');
+		});
+	}
+	// Next from justice/pride to team spirit
+	if (nextToTeamBtnEl) {
+		nextToTeamBtnEl.addEventListener('click', (e) => {
+			e.preventDefault();
+			navigateTo('team-spirit');
+		});
+	}
+	// Back from team spirit to justice/pride
+	if (backToJusticeBtnEl) {
+		backToJusticeBtnEl.addEventListener('click', (e) => {
+			e.preventDefault();
+			navigateTo('justice-pride');
 		});
 	}
 
