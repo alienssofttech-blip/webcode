@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>قياس نضج الثقافة التنظيمية</title>
+		<!-- Readex Pro font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<style>
+			:root { --bg: #ffffff; --fg: #142d35ef; --muted: #6b7280; --border: #e5e7eb; --hero-bg: #eef6f4; --hero-fg: #193a41; color-scheme: light dark; }
+			html[data-theme="dark"] { --bg: #0f1416; --fg: #e6edf3; --muted: #9aa4af; --border: #2b3238; --hero-bg: #0f2924; --hero-fg: #cfe1dd; color-scheme: dark; }
+			@media (prefers-color-scheme: dark) { html:not([data-theme]) { --bg: #0f1416; --fg: #e6edf3; --muted: #9aa4af; --border: #2b3238; --hero-bg: #0f2924; --hero-fg: #cfe1dd; color-scheme: dark; } }
+			html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: "Readex Pro", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Arabic", "Tajawal", sans-serif; }
+			/* Ensure all form controls use the same font as the page */
+			input, select, textarea, button { font: inherit; }
+			.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+			/* Navbar */
+			.nav { background: var(--bg); border-bottom: 1px solid var(--border); }
+			.nav-inner { height: 92px; display: flex; align-items: center; justify-content: space-between; }
+			.nav-left { display: flex; align-items: center; gap: 16px; }
+			.nav-right { display: flex; align-items: center; gap: 12px; }
+			.icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--fg); cursor: pointer; }
+			.icon { width: 22px; height: 22px; stroke: currentColor; fill: none; }
+			/* Theme toggle icon swap */
+			#themeToggleBtn .icon-sun { display: none; }
+			html[data-theme="dark"] #themeToggleBtn .icon-sun { display: inline; }
+			html[data-theme="dark"] #themeToggleBtn .icon-moon { display: none; }
+			.logo { height: 60px; object-fit: contain; }
+			/* Only used when no explicit dark logo is provided */
+			.logo.logo-invert { filter: brightness(0) invert(1); }
+			/* Placeholder main spacing below navbar */
+			main { padding: 0; }
+			/* Hero message styles */
+			.hero { background: var(--hero-bg); }
+			.hero .container { padding: 48px 24px; }
+			.hero p { color: var(--hero-fg); text-align: right; margin: 0 0 8px 0; line-height: 1.60; }
+				.hero .line-1 { font-weight: 500; font-size: 1rem; }
+			.hero .line-2, .hero .line-3, .hero .line-4 { font-weight: 400; font-size: 1.0rem; }
+			@media (min-width: 992px) {
+				.hero .container { padding: 60px 24px; }
+				.hero .line-1 { font-size: 1.6rem; }
+				.hero .line-2, .hero .line-3, .hero .line-4 { font-size: 1.2rem; }
+			}
+
+			/* Basic info form card */
+			.form-section { padding: 24px 0 40px; }
+			.card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+			.card-inner { padding: 28px; }
+			.form-title { text-align: center; font-weight: 700; font-size: 1.5rem; margin: 30PX 0 50px 0; }
+			.form-note { text-align: right; color: var(--hero-fg); font-weight: 400; font-size: 1rem; margin: 0 0 10px 0; }
+			[dir="ltr"] .form-note { text-align: left; }
+			@media (min-width: 992px) { .form-note { font-size: 1.15rem; } }
+			.row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+			@media (min-width: 900px) { .row.two { grid-template-columns: 1fr 1fr; } }
+			.field label { display: block; font-weight: 600; margin-bottom: 8px; text-align: right; }
+			.req { color: #dc2626; margin-right: 4px; }
+			.select {
+				position: relative;
+			}
+				.select select {
+				width: 100%;
+				height: 56px;
+				box-sizing: border-box;
+				padding: 0 14px 0 48px; /* RTL: text snug on right, space for chevron on left */
+				border: 1px solid var(--border);
+				border-radius: 18px;
+				background: var(--bg);
+				color: var(--fg);
+					appearance: none;
+					font-size: 1.1rem;
+					font-family: inherit; /* unify font inside native select */
+				transition: border-color 140ms ease, box-shadow 140ms ease;
+			}
+            /* Ensure options inside native select use the same font */
+            .select select option { font-family: inherit; }
+            /* LTR padding flips space to the right for chevron */
+            [dir="ltr"] .select select { padding: 0 48px 0 14px; }
+			.select select:hover { border-color: #006F5C; }
+			.select select:focus, .select select:focus-visible {
+				border-color: #006F5C;
+				outline: none;
+				box-shadow: 0 0 0 3px rgba(0, 111, 92, 0.15);
+			}
+
+			/* Text input styling to match selects */
+			.text-input {
+				width: 100%;
+				height: 56px;
+				box-sizing: border-box;
+				padding: 0 14px;
+				border: 1px solid var(--border);
+				border-radius: 18px;
+				background: var(--bg);
+				color: var(--fg);
+				font-size: 1.1rem;
+				transition: border-color 140ms ease, box-shadow 140ms ease;
+				text-align: right;
+			}
+			.text-input:hover { border-color: #006F5C; }
+			.text-input:focus { border-color: #006F5C; outline: none; box-shadow: 0 0 0 3px rgba(0, 111, 92, 0.15); }
+			[dir="ltr"] .text-input { text-align: left; }
+			/* Best-effort option hover styling (browser support varies) */
+			.select select option:hover { background-color: #006F5C; color: #fff; }
+			/* Chevron icon on the left for RTL */
+			.select::after {
+				content: "";
+				position: absolute;
+				left: 14px;
+				top: 50%;
+				width: 0; height: 0;
+				border-left: 6px solid transparent;
+				border-right: 6px solid transparent;
+				border-top: 7px solid var(--muted);
+				transform: translateY(-50%);
+				pointer-events: none;
+			}
+            /* Chevron moves to right in LTR */
+            [dir="ltr"] .select::after { right: 14px; left: auto; }
+			/* Hide native chevron when custom dropdown is active */
+			.select.has-dropdown::after { display: none; }
+
+			/* Visually hidden but accessible */
+			.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+			/* Utility to fully hide sections */
+			.hidden { display: none !important; }
+
+			/* Step panels: animated expand/collapse + horizontal slide */
+			.step-panel { max-height: 0; opacity: 0; transform: translateX(0); overflow: hidden; transition: max-height 340ms ease, opacity 280ms ease, transform 280ms ease; will-change: max-height, opacity, transform; }
+			.step-panel.active { max-height: 3000px; opacity: 1; transform: translateX(0); }
+			/* Directional helpers for nicer slide choreography */
+			.step-panel.enter-from-right { transform: translateX(36px) !important; opacity: 0; }
+			.step-panel.enter-from-left  { transform: translateX(-36px) !important; opacity: 0; }
+			.step-panel.leave-to-left    { transform: translateX(-36px) !important; opacity: 0; }
+			.step-panel.leave-to-right   { transform: translateX(36px) !important; opacity: 0; }
+
+			/* Custom dropdown (for styling the open list) */
+			.dropdown { position: relative; }
+			[dir="rtl"] .dropdown { direction: rtl; }
+			[dir="ltr"] .dropdown { direction: ltr; }
+				.dropdown-toggle { width: 100%; height: 56px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; border: 1px solid var(--border); border-radius: 18px; background: var(--bg); color: var(--fg); cursor: pointer; transition: border-color 140ms ease, box-shadow 140ms ease; font-size: 1.1rem; }
+			.dropdown-toggle:hover { border-color: #006F5C; }
+			.dropdown.open .dropdown-toggle, .dropdown-toggle:focus { border-color: #006F5C; box-shadow: 0 0 0 3px rgba(0,111,92,0.15); outline: none; }
+			.dropdown-caret { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 7px solid var(--muted); margin-left: 6px; }
+			.dropdown-menu { position: absolute; top: calc(100% + 6px); right: 0; width: 100%; max-height: 280px; overflow: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 6px; z-index: 1200; display: none; }
+			.dropdown.open .dropdown-menu { display: block; }
+				.dropdown-item { padding: 12px 14px; border-radius: 12px; cursor: pointer; font-size: 1.1rem; border: 2px solid transparent; transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease; }
+			.dropdown-item:hover { background: #006F5C; color: #fff; }
+			.dropdown-item.active { background: transparent; color: var(--fg); border-color: #006F5C; }
+			.dropdown-item.active:hover { background: transparent; color: var(--fg); border-color: #006F5C; }
+
+			/* Rating section */
+			.rating-title { text-align: center; font-weight: 700; font-size: 1.4rem; margin: 55px 0 15px; color: var(--fg); }
+			.rating-note { text-align: center; color: var(--hero-fg); font-weight: 500; font-size: 1.05rem; margin: 0 0 35px 0; }
+			.rating-row { display: block; }
+			.rating-scale { display: flex; flex-direction: row-reverse; gap: 12px; }
+			.rating-box { display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); color: var(--fg); font-weight: 700; font-size: 1.35rem; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+			/* Color only the number text: 1=red, 5=green (reversed) */
+			.rating-label > input[value="1"] + .rating-box { color: #dc2626; }
+			.rating-label > input[value="2"] + .rating-box { color: #f97316; }
+			.rating-label > input[value="3"] + .rating-box { color: #eab308; }
+			.rating-label > input[value="4"] + .rating-box { color: #10b981; }
+			.rating-label > input[value="5"] + .rating-box { color: #059669; }
+
+			/* Gradient colors for numbers inside the rating note */
+			.rating-note .note-num.n1 { color: #dc2626; }
+			.rating-note .note-num.n2 { color: #f97316; }
+			.rating-note .note-num.n3 { color: #eab308; }
+			.rating-note .note-num.n4 { color: #10b981; }
+			.rating-note .note-num.n5 { color: #059669; }
+			.rating-question { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; font-weight: 600; font-size: 1.15rem; color: var(--fg); text-align: right; direction: rtl; }
+			.rating-question-inner { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+			.rating-question-text { text-align: right; }
+            [dir="ltr"] .rating-question-text { text-align: left; }
+			.rating-question .req { color: #dc2626; }
+			.rating-input { position: absolute; opacity: 0; pointer-events: none; }
+			.rating-label { cursor: pointer; }
+			.rating-input:checked + .rating-box { outline: 2px solid #006F5C; outline-offset: 0; }
+            /* Flip scale direction for LTR */
+            [dir="ltr"] .rating-question { direction: ltr; text-align: left; }
+            [dir="ltr"] .hero p { text-align: left; }
+            [dir="ltr"] .field label { text-align: left; }
+            [dir="ltr"] .comment-area { text-align: left; direction: ltr; }
+
+				/* Stack question text above ratings on small/medium screens */
+				@media (max-width: 920px) {
+					.rating-question-inner { grid-template-columns: 1fr; gap: 14px; }
+					.rating-question-text { text-align: center; }
+					.rating-scale { justify-content: center; gap: 6px; }
+					.rating-box { width: 48px; height: 48px; font-size: 1.2rem; }
+				}
+
+				/* Extra small phones: tighten further to prevent overflow */
+				@media (max-width: 480px) {
+					.rating-scale { gap: 6px; }
+					.rating-box { width: 40px; height: 40px; font-size: 1.1rem; }
+				}
+
+			/* Comments textarea styling to match cards */
+			.rating-question-inner.single-col { grid-template-columns: 1fr; gap: 22px; align-items: stretch; }
+			.comment-area { width: 100%; max-width: 100%; box-sizing: border-box; min-height: 200px; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); color: var(--fg); font-size: 1rem; resize: vertical; text-align: right; direction: rtl; transition: border-color 120ms ease; }
+			.comment-area:focus { border-color: #006F5C; outline: none; }
+			.comment-area::placeholder { color: var(--muted); }
+
+			/* Invalid states */
+				.select select.invalid, .comment-area.invalid, .text-input.invalid { border-color: #dc2626 !important; outline: none; }
+				.select.invalid .dropdown-toggle { border-color: #dc2626 !important; box-shadow: none !important; }
+			.rating-question.invalid { border-color: #dc2626 !important; }
+
+			/* Modal */
+			.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: none; align-items: center; justify-content: center; z-index: 1300; opacity: 0; transition: opacity 220ms ease; }
+			.modal-backdrop.show { display: flex; opacity: 1; }
+			.modal-card { background: var(--bg); border-radius: 16px; padding: 32px 24px; width: min(820px, 92%); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.18); transform: translateY(12px) scale(0.97); opacity: 0; transition: transform 220ms ease, opacity 220ms ease; }
+			.modal-backdrop.show .modal-card { transform: translateY(0) scale(1); opacity: 1; }
+			.modal-backdrop.closing { opacity: 0; }
+			.modal-backdrop.closing .modal-card { transform: translateY(12px) scale(0.97); opacity: 0; }
+			.modal-check { width: 270px; height: 270px; margin: 0px auto 4px; display: block; fill: #006F5C; }
+			.modal-check-img { width: 160px;  height: auto; margin: 8px auto 24px; display: block; }
+			.modal-title { font-weight: 700; font-size: 1.8rem; margin: 30px 0 15px; }
+			.modal-text { font-weight: 500; font-size: 1.15rem; color: var(--fg); }
+
+			/* Modal sizing for small screens */
+			@media (max-width: 640px) {
+				.modal-card { padding: 22px 16px; width: clamp(280px, 82vw, 420px); }
+				.modal-check-img { width: 120px; margin: 4px auto 18px; }
+				.modal-title { font-size: 1.5rem; margin: 18px 0 10px; }
+				.modal-text { font-size: 1rem; }
+				.actions { margin-top: 32px; }
+				.btn { height: 44px; padding: 0 34px; font-size: 1rem; }
+			}
+
+			@media (max-width: 400px) {
+				.modal-card { padding: 18px 14px; width: 88vw; }
+				.modal-check-img { width: 96px; margin: 0 auto 14px; }
+				.modal-title { font-size: 1.35rem; margin: 14px 0 8px; }
+				.modal-text { font-size: 0.95rem; }
+				.btn { height: 42px; padding: 0 28px; font-size: 0.98rem; }
+			}
+
+			/* Actions & buttons */
+			.actions { display: flex; justify-content: center; margin-top: 20px; }
+			.btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 45px; border-radius: 9px; border: 0; cursor: pointer;  font-size: 1.1rem; font-family: inherit; line-height: 1; }
+			.btn-primary { background: #006F5C; color: #fff; }
+			.btn-primary:hover { background: #065f50; }
+			.btn-primary:focus { outline: 3px solid rgba(0,111,92,0.25); outline-offset: 2px; }
+			.btn-secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+			.btn-secondary:hover { border-color: #006F5C; color: #006F5C; }
+			.btn-secondary:focus { outline: 3px solid rgba(0,111,92,0.25); outline-offset: 2px; }
+
+			/* Progress indicator (form path) */
+			.progress { margin: 4px 0 6px; }
+			.progress-list { display: flex; align-items: center; gap: 14px; padding: 0; margin: 0; list-style: none; }
+			.progress .step { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-weight: 600; }
+			.progress .step .dot { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; border: 2px solid var(--border); background: var(--bg); color: var(--muted); font-weight: 700; position: relative; }
+			.progress .step.active { color: var(--fg); }
+			.progress .step.active .dot { border-color: #006F5C; background: #006F5C; color: #fff; }
+			.progress .step.completed { color: #006F5C; }
+			.progress .step.completed .dot { border-color: #006F5C; background: transparent; color: transparent; }
+			.progress .step.completed .dot::before { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #006F5C; font-weight: 900; font-size: 18px; }
+			.progress .connector { flex: 1; height: 2px; background: var(--border); border-radius: 2px; min-width: 40px; }
+
+			/* Question category headers */
+			.category-title {
+				font-weight: 800;
+				font-size: 1.1rem;
+				margin: 28px 0 14px;
+				text-align: center;
+				background: var(--hero-bg);
+				color: var(--hero-fg);
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				padding: 10px 14px;
+			}
+			[dir="ltr"] .category-title { text-align: center; }
+
+			/* Footer */
+			.footer { border-top: 1px solid var(--border); margin-top: 90px; padding: 28px 0 28px; text-align: center; color: var(--muted); font-weight: 100; }
+
+			/* Ensure third panel shows fully when active */
+			#justiceSection.step-panel.active { overflow: visible; max-height: 3000px; opacity: 1; transform: translateX(0); }
+		</style>
+	</head>
+	<body>
+		<!-- الشريط العلوي: يمين الشعار، يسار أيقونة اللغة وأيقونة تبديل المود فقط -->
+		<nav class="nav" aria-label="الشريط العلوي">
+			<div class="container nav-inner">
+				<div class="nav-left" aria-label="أيقونات يسار">
+								<img class="logo" src="./img/Logo-geosa-rgb.png" data-logo-light="./img/Logo-geosa-rgb.png" data-logo-dark="./img/logo-darkmode.png" data-logo-light-en="./img/GEOSA_logo-EN.png" data-logo-dark-en="./img/GEOSA_logo- EN-darkmode.png" alt="General Authority for Survey and Geospatial Information — الهيئة العامة للمساحة والمعلومات الجيومكانية" />
+
+				</div>
+				<div class="nav-right" aria-label="الشعار">
+					<button id="langToggleBtn" class="icon-btn" type="button" aria-label="اللغة">
+						<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+							<circle cx="12" cy="12" r="9" stroke-width="2" />
+							<path d="M12 3c3 3 3 15 0 18" stroke-width="2" stroke-linecap="round" />
+							<path d="M12 3c-3 3-3 15 0 18" stroke-width="2" stroke-linecap="round" />
+							<path d="M3 12h18" stroke-width="2" stroke-linecap="round" />
+						</svg>
+					</button>
+					<button id="themeToggleBtn" class="icon-btn" type="button" aria-label="تبديل المود">
+						<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</button>				</div>
+			</div>
+		</nav>
+
+		<!-- Hero message directly under navbar -->
+		<section class="hero" aria-label="رسالة ترحيبية">
+			<div class="container">
+				<p class="line-1">قياس النضج اتجاه الثقافة التنظيمية ..</p>
+				<p class="line-2">اكتب الوصف هنا..</p>
+			</div>
+		</section>
+
+		<!-- Basic info form directly after hero -->
+		<section class="form-section" aria-labelledby="basic-info-title">
+			<div class="container">
+				<div class="card">
+					<div class="card-inner">
+						<nav class="progress" aria-label="مسار النموذج">
+							<ol class="progress-list">
+								<li class="step active" data-step="basic">
+									<span class="dot">1</span>
+									<span id="progress-basic-label" class="label">المعلومات الأساسية</span>
+								</li>
+								<li class="connector" aria-hidden="true"></li>
+								<li class="step" data-step="questions">
+									<span class="dot">2</span>
+									<span id="progress-questions-label" class="label"> أسئلة القياس</span>
+								</li>
+								<li class="connector" aria-hidden="true"></li>
+								<li class="step" data-step="justice-pride">
+									<span class="dot">3</span>
+									<span id="progress-justice-label" class="label"> العدالة والشعور بالفخر</span>
+								</li>
+							</ol>
+						</nav>
+						<div id="basicSection" class="step-panel active">
+							<h2 id="basic-info-title" class="form-title">المعلومات الأساسية</h2>
+							<div class="row two">
+							<div class="field">
+								<label for="sector"><span class="req">*</span>اختر الفئة الوظيفية</label>
+								<div class="select">
+									<select id="sector" name="profile.role" required>
+										<option value="" disabled selected hidden>الرجاء الاختيار</option>
+										<option value="support_22_23">الدعم والمساندة 22 و 23</option>
+										<option value="specialist_24_28">الإخصائية 24 – 28</option>
+										<option value="middle_29_32">الإدارة الوسطى 29-32</option>
+										<option value="senior_33_35">الإدارة العليا والقيادية 33-35</option>
+									</select>
+								</div>
+							</div>
+
+								
+							<div class="field">
+								<label for="usageFreq"><span class="req">*</span>المبنى الذي تقضي فيه ساعات عملك</label>
+								<div class="select">
+									<select id="usageFreq" name="profile.usageFrequency" required>
+										<option value="" disabled selected hidden>الرجاء الاختيار</option>
+										<option value="main">الرئيسي</option>
+										<option value="production">الإنتاجي</option>
+										<option value="jeddah">فرع جدة</option>
+									</select>
+								</div>
+							</div>
+							<div class="field">
+								<label for="jobClass"><span class="req">*</span>تصنف وظيفتك</label>
+								<div class="select">
+									<select id="jobClass" name="profile.jobClass" required>
+										<option value="" disabled selected hidden>الرجاء الاختيار</option>
+										<option value="core_tech">فنية ضمن نطاق الهيئة الأساسي</option>
+										<option value="survey_support">وظائف أعمال المساحة، داعمة وممكنة لأعمال الهيئة</option>
+										<option value="finance">وظائف المالية</option>
+										<option value="project_mgmt">إدارة المشاريع</option>
+										<option value="hr">رأس المال البشري</option>
+									</select>
+								</div>
+							</div>
+							<div id="q-third-container" class="rating-row" style="margin-top: 16px;"></div>
+							</div>
+
+							<!-- Next button to go to questions after validating basic info -->
+							<div class="actions" id="basic-next-actions" style="margin-top: 54px;">
+								<button id="nextBtn" type="button" class="btn btn-primary" aria-label="التالي">التالي</button>
+							</div>
+						</div>
+
+						<!-- Rating section is initially collapsed and revealed on Next with animation -->
+						<div id="questionsSection" class="questions-section step-panel">
+							<h3 class="rating-title">أسئلةالقياس</h3>
+							<p class="rating-note">استخدم مقياسًا من (1 إلى 5): <span class="note-num n1">1</span> لا أوافق على الإطلاق، <span class="note-num n2">2</span> لا أوافق، <span class="note-num n3">3</span> محايد، <span class="note-num n4">4</span> أوافق، <span class="note-num n5">5</span> أوافق بشدة</p>
+							<h4 id="cat-cred" class="category-title">المصداقية</h4>
+						<div class="rating-row" role="group" aria-labelledby="q-overall">
+							<div id="q-overall" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										الإدارة العليا تشرح أسباب القرارات المهمة بوضوح
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred1" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred1" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred1" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred1" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred1" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<!-- 8th rating question removed here; will be placed after cred7 -->
+
+
+							<!-- Second rating question: needs fulfillment -->
+							<div class="rating-row" role="group" aria-labelledby="q-cred2" style="margin-top: 16px;">
+								<div id="q-cred2" class="rating-question">
+									<div class="rating-question-inner">
+										<div class="rating-question-text">
+											<span class="req">*</span>
+											تصلني المعلومات المتعلقة بالعمل في الوقت المناسب
+										</div>
+										<div class="rating-scale">
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred2" value="5" />
+												<span class="rating-box">5</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred2" value="4" />
+												<span class="rating-box">4</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred2" value="3" />
+												<span class="rating-box">3</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred2" value="2" />
+												<span class="rating-box">2</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred2" value="1" />
+												<span class="rating-box">1</span>
+											</label>
+										</div>
+									</div>
+								</div>
+						
+						</div>
+											<div class="rating-row" role="group" aria-labelledby="q-cred3" style="margin-top: 16px;">
+											<div id="q-cred3" class="rating-question">
+									<div class="rating-question-inner">
+										<div class="rating-question-text">
+											<span class="req">*</span>
+											هناك اتساق بين ما يُقال وما يتم تطبيقه فعلياً
+										</div>
+										<div class="rating-scale">
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred3" value="5" />
+												<span class="rating-box">5</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred3" value="4" />
+												<span class="rating-box">4</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred3" value="3" />
+												<span class="rating-box">3</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred3" value="2" />
+												<span class="rating-box">2</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred3" value="1" />
+												<span class="rating-box">1</span>
+											</label>
+										</div>
+									</div>
+								</div>
+						</div>
+											<div class="rating-row" role="group" aria-labelledby="q-cred4" style="margin-top: 16px;">
+											<div id="q-cred4" class="rating-question">
+									<div class="rating-question-inner">
+										<div class="rating-question-text">
+											<span class="req">*</span>
+											يتم الاعتراف بالأخطاء ومعالجتها بشفافية
+										</div>
+										<div class="rating-scale">
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred4" value="5" />
+												<span class="rating-box">5</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred4" value="4" />
+												<span class="rating-box">4</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred4" value="3" />
+												<span class="rating-box">3</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred4" value="2" />
+												<span class="rating-box">2</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred4" value="1" />
+												<span class="rating-box">1</span>
+											</label>
+										</div>
+									</div>
+								</div>
+						</div>
+											<div class="rating-row" role="group" aria-labelledby="q-cred5" style="margin-top: 16px;">
+											<div id="q-cred5" class="rating-question">
+									<div class="rating-question-inner">
+										<div class="rating-question-text">
+											<span class="req">*</span>
+											تتسم توجيهات القيادة بالوضوح وتقل فيها التناقضات
+										</div>
+										<div class="rating-scale">
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred5" value="5" />
+												<span class="rating-box">5</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred5" value="4" />
+												<span class="rating-box">4</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred5" value="3" />
+												<span class="rating-box">3</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred5" value="2" />
+												<span class="rating-box">2</span>
+											</label>
+											<label class="rating-label">
+												<input class="rating-input" type="radio" name="rating.cred5" value="1" />
+												<span class="rating-box">1</span>
+											</label>
+										</div>
+									</div>
+								</div>
+						</div>
+											<div class="rating-row" role="group" aria-labelledby="q-comm" style="margin-top: 16px;">
+												<div id="q-comm" class="rating-question">
+													<div class="rating-question-inner">
+														<div class="rating-question-text">
+															<span class="req">*</span>
+															أهداف الجهة واضحة ومترجمة إلى أولويات تنفيذية
+														</div>
+														<div class="rating-scale">
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred6" value="5" />
+																<span class="rating-box">5</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred6" value="4" />
+																<span class="rating-box">4</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred6" value="3" />
+																<span class="rating-box">3</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred6" value="2" />
+																<span class="rating-box">2</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred6" value="1" />
+																<span class="rating-box">1</span>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- 7th rating question: responsiveness -->
+											<div class="rating-row" role="group" aria-labelledby="q-resp" style="margin-top: 16px;">
+												<div id="q-resp" class="rating-question">
+													<div class="rating-question-inner">
+														<div class="rating-question-text">
+															<span class="req">*</span>
+															يتاح للموظفين طرح الأسئلة والحصول على إجابات صريحة
+														</div>
+														<div class="rating-scale">
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred7" value="5" />
+																<span class="rating-box">5</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred7" value="4" />
+																<span class="rating-box">4</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred7" value="3" />
+																<span class="rating-box">3</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred7" value="2" />
+																<span class="rating-box">2</span>
+															</label>
+															<label class="rating-label">
+																<input class="rating-input" type="radio" name="rating.cred7" value="1" />
+																<span class="rating-box">1</span>
+															</label>
+														</div>
+													</div>
+												</div>
+												<!-- 8th rating question: credibility (moved here) -->
+						<div class="rating-row" role="group" aria-labelledby="q-cred8" style="margin-top: 16px;">
+							<div id="q-cred8" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أشعر أن وعود الإدارة قابلة للتحقق ويتم الالتزام بها
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred8" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred8" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred8" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred8" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.cred8" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+											<!-- Comments field (free text) -->
+						<!-- <div class="rating-row" role="group" aria-labelledby="q-comments" style="margin-top: 16px;">
+							<div id="q-comments" class="rating-question">
+								<div class="rating-question-inner single-col">
+										<div class="rating-question-text">
+											ماهي الأفكار أو الاقتراحات التي ترغب في مشاركتها لتحسين تجربتك معنا؟
+										</div>
+									<textarea id="comments" name="feedback.comments" class="comment-area" placeholder="اكتب الملاحظات هنا"></textarea>
+								</div>
+							</div>
+						</div> -->
+						<h4 id="cat-respect" class="category-title">الاحترام</h4>
+
+						<!-- Respect Q1 -->
+						<div class="rating-row" role="group" aria-labelledby="q-respect1" style="margin-top: 16px;">
+							<div id="q-respect1" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أحصل على الدعم اللازم لإنجاز عملي بجودة عالية
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.respect1" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.respect1" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.respect1" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.respect1" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.respect1" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+<!-- Respect Q2 -->
+								<div class="rating-row" role="group" aria-labelledby="q-respect2" style="margin-top: 16px;">
+									<div id="q-respect2" class="rating-question">
+										<div class="rating-question-inner">
+											<div class="rating-question-text">
+												<span class="req">*</span>
+												يتم تفويض الصلاحيات بما يتناسب مع المسؤوليات
+											</div>
+											<div class="rating-scale">
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect2" value="5" />
+													<span class="rating-box">5</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect2" value="4" />
+													<span class="rating-box">4</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect2" value="3" />
+													<span class="rating-box">3</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect2" value="2" />
+													<span class="rating-box">2</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect2" value="1" />
+													<span class="rating-box">1</span>
+												</label>
+											</div>
+										</div>
+									</div>
+
+	<!-- Respect Q3 -->
+									<div class="rating-row" role="group" aria-labelledby="q-respect3" style="margin-top: 16px;">
+										<div id="q-respect3" class="rating-question">
+											<div class="rating-question-inner">
+												<div class="rating-question-text">
+													<span class="req">*</span>
+													تتوفر فرص تعلم وتطوير عادلة وواضحة
+												</div>
+												<div class="rating-scale">
+													<label class="rating-label">
+														<input class="rating-input" type="radio" name="rating.respect3" value="5" />
+														<span class="rating-box">5</span>
+													</label>
+													<label class="rating-label">
+														<input class="rating-input" type="radio" name="rating.respect3" value="4" />
+														<span class="rating-box">4</span>
+													</label>
+													<label class="rating-label">
+														<input class="rating-input" type="radio" name="rating.respect3" value="3" />
+														<span class="rating-box">3</span>
+													</label>
+													<label class="rating-label">
+														<input class="rating-input" type="radio" name="rating.respect3" value="2" />
+														<span class="rating-box">2</span>
+													</label>
+													<label class="rating-label">
+														<input class="rating-input" type="radio" name="rating.respect3" value="1" />
+														<span class="rating-box">1</span>
+													</label>
+												</div>
+											</div>
+										</div>
+
+<!-- Respect Q4 -->
+								<div class="rating-row" role="group" aria-labelledby="q-respect4" style="margin-top: 16px;">
+									<div id="q-respect4" class="rating-question">
+										<div class="rating-question-inner">
+											<div class="rating-question-text">
+												<span class="req">*</span>
+												مديري المباشر يهتم بتطوري المهني ويوجهني بموضوعية
+											</div>
+											<div class="rating-scale">
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect4" value="5" />
+													<span class="rating-box">5</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect4" value="4" />
+													<span class="rating-box">4</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect4" value="3" />
+													<span class="rating-box">3</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect4" value="2" />
+													<span class="rating-box">2</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect4" value="1" />
+													<span class="rating-box">1</span>
+												</label>
+											</div>
+										</div>
+									</div>
+
+<!-- Respect Q5 -->
+								<div class="rating-row" role="group" aria-labelledby="q-respect5" style="margin-top: 16px;">
+									<div id="q-respect5" class="rating-question">
+										<div class="rating-question-inner">
+											<div class="rating-question-text">
+												<span class="req">*</span>
+												يتم التعامل باحترام مع توازن العمل والحياة قدر الإمكان
+											</div>
+											<div class="rating-scale">
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect5" value="5" />
+													<span class="rating-box">5</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect5" value="4" />
+													<span class="rating-box">4</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect5" value="3" />
+													<span class="rating-box">3</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect5" value="2" />
+													<span class="rating-box">2</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect5" value="1" />
+													<span class="rating-box">1</span>
+												</label>
+											</div>
+										</div>
+									</div>
+
+<!-- Respect Q6 -->
+								<div class="rating-row" role="group" aria-labelledby="q-respect6" style="margin-top: 16px;">
+									<div id="q-respect6" class="rating-question">
+										<div class="rating-question-inner">
+											<div class="rating-question-text">
+												<span class="req">*</span>
+												تؤخذ ملاحظات الموظفين  تجاه  تحسين بيئة العمل بجدية
+											</div>
+											<div class="rating-scale">
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect6" value="5" />
+													<span class="rating-box">5</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect6" value="4" />
+													<span class="rating-box">4</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect6" value="3" />
+													<span class="rating-box">3</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect6" value="2" />
+													<span class="rating-box">2</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect6" value="1" />
+													<span class="rating-box">1</span>
+												</label>
+											</div>
+										</div>
+									</div>
+
+<!-- Respect Q7-->
+								<div class="rating-row" role="group" aria-labelledby="q-respect7" style="margin-top: 16px;">
+									<div id="q-respect7" class="rating-question">
+										<div class="rating-question-inner">
+											<div class="rating-question-text">
+												<span class="req">*</span>
+												تؤخذ ملاحظات الموظفين  تجاه  تحسين بيئة العمل بجدية
+											</div>
+											<div class="rating-scale">
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect7" value="5" />
+													<span class="rating-box">5</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect7" value="4" />
+													<span class="rating-box">4</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect7" value="3" />
+													<span class="rating-box">3</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect7" value="2" />
+													<span class="rating-box">2</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect7" value="1" />
+													<span class="rating-box">1</span>
+												</label>
+											</div>
+										</div>
+									</div>
+ 
+<!-- Respect Q8 -->
+								<div class="rating-row" role="group" aria-labelledby="q-respect8" style="margin-top: 16px;">
+									<div id="q-respect8" class="rating-question">
+										<div class="rating-question-inner">
+											<div class="rating-question-text">
+												<span class="req">*</span>
+												تتم إدارة  أعباء  العمل بشكل معقول وعادل بين الفريق
+											</div>
+											<div class="rating-scale">
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect8" value="5" />
+													<span class="rating-box">5</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect8" value="4" />
+													<span class="rating-box">4</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect8" value="3" />
+													<span class="rating-box">3</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect8" value="2" />
+													<span class="rating-box">2</span>
+												</label>
+												<label class="rating-label">
+													<input class="rating-input" type="radio" name="rating.respect8" value="1" />
+													<span class="rating-box">1</span>
+												</label>
+											</div>
+										</div>
+									</div>
+
+
+
+
+
+
+
+
+						<!-- Actions for questions step -->
+						<div class="actions">
+							<button id="backBtn" type="button" class="btn btn-secondary" aria-label="رجوع" style="margin-inline-end: 12px;">رجوع</button>
+							<button id="nextToJusticeBtn" type="button" class="btn btn-primary" aria-label="التالي">التالي</button>
+						</div>
+					</div>
+
+					<!-- Third step panel moved inside same card to keep one box -->
+					<div id="justiceSection" class="step-panel" data-step="justice-pride">
+						<h3 id="justice-title" class="category-title">العدالة والشعور بالفخر</h3>
+						<!-- Placeholder: add questions later under this section -->
+						<div class="actions" style="margin-top: 24px;">
+							<button id="backToQuestionsBtn" type="button" class="btn btn-secondary" aria-label="رجوع" style="margin-inline-end: 12px;">رجوع</button>
+							<button id="submitBtn" type="button" class="btn btn-primary" aria-label="إرسال">إرسال</button>
+						</div>
+					</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+		<main class="container"></main>
+		<footer class="footer" aria-label="حقوق النشر">
+			<div class="container">جميع الحقوق محفوظة - الهيئة العامة للمساحة والمعلومات الجيومكانية 2025</div>
+		</footer>
+		<!-- Success Modal -->
+		<div id="successModal" class="modal-backdrop" role="dialog" aria-labelledby="successTitle" aria-modal="true" aria-hidden="true">
+			<div class="modal-card">
+				<img class="modal-check-img" src="./img/Done.png" alt="تم الإرسال بنجاح" />
+				<div id="successTitle" class="modal-title">شكراً لك!</div>
+				<div class="modal-text">تم استلام إجاباتك بنجاح.</div>
+				<div class="actions" style="margin-top: 70px;">
+					<button id="modalCloseBtn" type="button" class="btn btn-primary">إغلاق</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="Main.js"></script>
+	</body>
+ </html>
