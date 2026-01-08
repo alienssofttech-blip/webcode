@@ -129,7 +129,7 @@
 
 			/* Step panels: animated expand/collapse + horizontal slide */
 			.step-panel { max-height: 0; opacity: 0; transform: translateX(0); overflow: hidden; transition: max-height 340ms ease, opacity 280ms ease, transform 280ms ease; will-change: max-height, opacity, transform; }
-			.step-panel.active { max-height: 3000px; opacity: 1; transform: translateX(0); }
+			.step-panel.active { max-height: 12000px; opacity: 1; transform: translateX(0); }
 			/* Directional helpers for nicer slide choreography */
 			.step-panel.enter-from-right { transform: translateX(36px) !important; opacity: 0; }
 			.step-panel.enter-from-left  { transform: translateX(-36px) !important; opacity: 0; }
@@ -279,7 +279,7 @@
 			.footer { border-top: 1px solid var(--border); margin-top: 90px; padding: 28px 0 28px; text-align: center; color: var(--muted); font-weight: 100; }
 
 			/* Ensure third panel shows fully when active */
-			#justiceSection.step-panel.active { overflow: visible; max-height: 3000px; opacity: 1; transform: translateX(0); }
+			#justiceSection.step-panel.active { overflow: visible; max-height: 12000px; opacity: 1; transform: translateX(0); }
 		</style>
 	</head>
 	<body>
@@ -335,6 +335,11 @@
 								<li class="step" data-step="justice-pride">
 									<span class="dot">3</span>
 									<span id="progress-justice-label" class="label"> العدالة والشعور بالفخر</span>
+								</li>
+								<li class="connector" aria-hidden="true"></li>
+								<li class="step" data-step="team-spirit">
+									<span class="dot">4</span>
+									<span id="progress-team-label" class="label"> الزمالة وروح الفريق</span>
 								</li>
 							</ol>
 						</nav>
@@ -947,9 +952,823 @@
 					<!-- Third step panel moved inside same card to keep one box -->
 					<div id="justiceSection" class="step-panel" data-step="justice-pride">
 						<h3 id="justice-title" class="category-title">العدالة والشعور بالفخر</h3>
-						<!-- Placeholder: add questions later under this section -->
+						<p class="rating-note">استخدم مقياسًا من (1 إلى 5): <span class="note-num n1">1</span> لا أوافق على الإطلاق، <span class="note-num n2">2</span> لا أوافق، <span class="note-num n3">3</span> محايد، <span class="note-num n4">4</span> أوافق، <span class="note-num n5">5</span> أوافق بشدة</p>
+						<h4 id="cat-justice" class="category-title">العدالة</h4>
+						<div class="rating-row" role="group" aria-labelledby="q-justice18" style="margin-top: 16px;">
+							<div id="q-justice18" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										تتم الترقيات بناءً على معايير واضحة ومعلنة
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice18" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice18" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice18" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice18" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice18" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-justice19" style="margin-top: 16px;">
+							<div id="q-justice19" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يتم تقييم الأداء بموضوعية واتساق
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice19" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice19" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice19" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice19" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice19" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-justice20" style="margin-top: 16px;">
+							<div id="q-justice20" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أشعر بتكافؤ الفرص في التدريب والتكليفات النوعية
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice20" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice20" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice20" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice20" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice20" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-justice21" style="margin-top: 16px;">
+							<div id="q-justice21" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										تُدار المكافآت والحوافز إن وجدت بمعايير عادلة
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice21" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice21" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice21" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice21" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice21" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-justice22" style="margin-top: 16px;">
+							<div id="q-justice22" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										تُعالج الشكاوى/التظلمات بسرية وعدالة
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice22" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice22" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice22" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice22" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice22" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-justice23" style="margin-top: 16px;">
+							<div id="q-justice23" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										لا تؤثر العلاقات الشخصية على القرارات الإدارية
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice23" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice23" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice23" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice23" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice23" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-justice24" style="margin-top: 16px;">
+							<div id="q-justice24" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يتم التعامل مع الجميع بنفس المعايير دون تمييز
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-justice24b" style="margin-top: 16px;">
+							<div id="q-justice24b" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										القرارات المتعلقة بالموارد عادلة (فرص، مهام، مزايا)
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24b" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24b" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24b" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24b" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.justice24b" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h4 id="cat-pride" class="category-title">الشعور بالفخر Pride</h4>
+						<div class="rating-row" role="group" aria-labelledby="q-pride25" style="margin-top: 16px;">
+							<div id="q-pride25" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أشعر بالفخر لكوني جزءاً من هذه الجهة
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride25" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride25" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride25" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride25" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride25" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-pride26" style="margin-top: 16px;">
+							<div id="q-pride26" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أرى أن عملي يساهم في تحقيق أثر واضح للمستفيدين/للوطن
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride26" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride26" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride26" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride26" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride26" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-pride27" style="margin-top: 16px;">
+							<div id="q-pride27" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أعرف كيف يساهم عملي اليومي في أهداف الجهة
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride27" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride27" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride27" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride27" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride27" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-pride28" style="margin-top: 16px;">
+							<div id="q-pride28" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يتم الاحتفاء بالإنجازات المؤسسية والفردية بشكل مناسب
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride28" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride28" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride28" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride28" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride28" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-pride29" style="margin-top: 16px;">
+							<div id="q-pride29" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										سمعة الجهة تجعلني أوصي الآخرين بالعمل بها
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride29" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride29" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride29" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride29" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride29" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-pride30" style="margin-top: 16px;">
+							<div id="q-pride30" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أشعر بأن جودة الخدمات/المنتجات التي نقدمها عالية
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride30" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride30" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride30" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride30" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride30" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-pride31" style="margin-top: 16px;">
+							<div id="q-pride31" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أشعر بالانتماء لقيم الجهة وليس فقط للمهام الوظيفية
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride31" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride31" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride31" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride31" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride31" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-pride32" style="margin-top: 16px;">
+							<div id="q-pride32" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										في الجهة قصص نجاح ملهمة يتم إبرازها داخلياً
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride32" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride32" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride32" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride32" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.pride32" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="rating-row" role="group" aria-labelledby="q-open-justice-1" style="margin-top: 24px;">
+							<div id="q-open-justice-1" class="rating-question">
+								<div class="rating-question-inner single-col">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										ما العامل الأهم الذي تعتقد أنه سيحدث فارقًا جوهريًا في تحسين بيئة العمل عند استهدافه؟
+									</div>
+									<textarea id="justiceOpen1" name="feedback.open1" class="comment-area" placeholder="اكتب رأيك هنا" required></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-open-justice-2" style="margin-top: 16px;">
+							<div id="q-open-justice-2" class="rating-question">
+								<div class="rating-question-inner single-col">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										ما أفضل ممارسة حالية تدعم ثقافة الهيئة يجب تعزيزها وعدم التفريط بها؟
+									</div>
+									<textarea id="justiceOpen2" name="feedback.open2" class="comment-area" placeholder="اكتب رأيك هنا" required></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-open-justice-3" style="margin-top: 16px;">
+							<div id="q-open-justice-3" class="rating-question">
+								<div class="rating-question-inner single-col">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										ما العائق الذي قد يؤثر سلبًا على ثقافة الهيئة في الوقت الراهن؟
+									</div>
+									<textarea id="justiceOpen3" name="feedback.open3" class="comment-area" placeholder="اكتب رأيك هنا" required></textarea>
+								</div>
+							</div>
+						</div>
+
 						<div class="actions" style="margin-top: 24px;">
 							<button id="backToQuestionsBtn" type="button" class="btn btn-secondary" aria-label="رجوع" style="margin-inline-end: 12px;">رجوع</button>
+							<button id="nextToTeamBtn" type="button" class="btn btn-primary" aria-label="التالي">التالي</button>
+						</div>
+					</div>
+
+					<div id="teamSpiritSection" class="step-panel" data-step="team-spirit">
+						<h3 id="team-title" class="category-title">الزمالة وروح الفريق</h3>
+						<p class="rating-note">استخدم مقياسًا من (1 إلى 5): <span class="note-num n1">1</span> لا أوافق على الإطلاق، <span class="note-num n2">2</span> لا أوافق، <span class="note-num n3">3</span> محايد، <span class="note-num n4">4</span> أوافق، <span class="note-num n5">5</span> أوافق بشدة</p>
+						<div class="rating-row" role="group" aria-labelledby="q-team33" style="margin-top: 16px;">
+							<div id="q-team33" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										تسود علاقات عمل إيجابية داخل فريقي
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team33" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team33" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team33" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team33" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team33" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-team34" style="margin-top: 16px;">
+							<div id="q-team34" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يتم التعاون بين الإدارات بشكل عملي وليس شكلياً
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team34" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team34" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team34" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team34" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team34" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-team35" style="margin-top: 16px;">
+							<div id="q-team35" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يتم حل الخلافات بشكل محترم وبنّاء
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team35" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team35" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team35" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team35" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team35" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-team36" style="margin-top: 16px;">
+							<div id="q-team36" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أشعر بالأمان لطرح رأيي دون تبعات سلبية
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team36" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team36" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team36" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team36" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team36" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-team37" style="margin-top: 16px;">
+							<div id="q-team37" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يُشجَّع العمل بروح الفريق أكثر من العمل الفردي
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team37" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team37" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team37" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team37" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team37" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-team38" style="margin-top: 16px;">
+							<div id="q-team38" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يتم تقدير مساهمات الجميع داخل الفريق
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team38" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team38" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team38" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team38" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team38" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-team39" style="margin-top: 16px;">
+							<div id="q-team39" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										أشعر أن بيئة العمل داعمة ومحفزة
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team39" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team39" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team39" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team39" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team39" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rating-row" role="group" aria-labelledby="q-team40" style="margin-top: 16px;">
+							<div id="q-team40" class="rating-question">
+								<div class="rating-question-inner">
+									<div class="rating-question-text">
+										<span class="req">*</span>
+										يوجد شعور عام بالثقة المتبادلة بين الزملاء
+									</div>
+									<div class="rating-scale">
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team40" value="5" />
+											<span class="rating-box">5</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team40" value="4" />
+											<span class="rating-box">4</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team40" value="3" />
+											<span class="rating-box">3</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team40" value="2" />
+											<span class="rating-box">2</span>
+										</label>
+										<label class="rating-label">
+											<input class="rating-input" type="radio" name="rating.team40" value="1" />
+											<span class="rating-box">1</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="actions" style="margin-top: 24px;">
+							<button id="backToJusticeBtn" type="button" class="btn btn-secondary" aria-label="رجوع" style="margin-inline-end: 12px;">رجوع</button>
 							<button id="submitBtn" type="button" class="btn btn-primary" aria-label="إرسال">إرسال</button>
 						</div>
 					</div>
