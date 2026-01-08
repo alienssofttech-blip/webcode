@@ -541,6 +541,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		return true;
 	}
 
+	function validateOpenQuestions() {
+		clearInvalid();
+		let firstInvalid = null;
+		openQuestionIds.forEach(id => {
+			const field = document.getElementById(id);
+			if (field && !field.value.trim()) {
+				field.classList.add('invalid');
+				if (!firstInvalid) firstInvalid = field.closest('.rating-question') || field;
+			}
+		});
+		if (firstInvalid) {
+			firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			return false;
+		}
+		return true;
+	}
+
 	function validate() {
 		clearInvalid();
 		let firstInvalid = null;
@@ -566,13 +583,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 		// Required open-ended questions
-		openQuestionIds.forEach(id => {
-			const field = document.getElementById(id);
-			if (field && !field.value.trim()) {
-				field.classList.add('invalid');
-				if (!firstInvalid) firstInvalid = field.closest('.rating-question') || field;
-			}
-		});
+		if (!validateOpenQuestions()) {
+			return false;
+		}
 		// Consent validation removed
 		if (firstInvalid) {
 			firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -739,6 +752,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (nextToTeamBtnEl) {
 		nextToTeamBtnEl.addEventListener('click', (e) => {
 			e.preventDefault();
+			if (!validateOpenQuestions()) return;
 			navigateTo('team-spirit');
 		});
 	}
